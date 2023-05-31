@@ -145,13 +145,57 @@
 
     // console group start button - group messages together in console until group end called
     errorBtns[8].addEventListener('click', e => {
-      console.group("group starting now");
+      console.group("group ");
     })
 
     // console group end button - stop visually grouping messages in console
     errorBtns[9].addEventListener('click', e => {
-      console.groupEnd("group ending now");
+      console.groupEnd("group");
     })
+
+    // console table button - log array as objects in table to console
+    errorBtns[10].addEventListener('click', e => {
+      var classes = [
+        {
+          course: 'CSE 101',
+          professor: 'Miles Jones'
+        },
+        {
+          course: 'CSE 110',
+          professor: 'Thomas Powell'
+        },
+        {
+          course: 'MATH 183',
+          professor: 'Yu Huan'
+        },
+        {
+          course: 'CSE 140L',
+          professor: 'John Eldon'
+        }
+      ];
+      console.table(classes);
+    })
+
+    // start timer button - starts a new timer
+    errorBtns[11].addEventListener('click', e => {
+      console.time("timer");
+    })
+
+    // end timer button - stops timer and prints time elapsed to console
+    errorBtns[12].addEventListener('click', e => {
+      console.timeEnd("timer");
+    })
+
+    // console trace button - print stack trace to console
+    errorBtns[13].addEventListener('click', e => {
+      const first = () => { second(); };
+      const second = () => { third(); };
+      const third = () => { fourth(); };
+      const fourth = () => { console.trace(); };
+      first();
+    })
+
+    // global error button - 
   </script>
 </body>
 
