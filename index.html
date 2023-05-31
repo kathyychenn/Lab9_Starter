@@ -100,8 +100,58 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
-    // Start your code here
-    // You may move this JS to another file if you wish
+    // console log button - prints message to console
+    errorBtns[0].addEventListener('click', e => {
+      console.log("print this message");
+    })
+
+    // console error button - prints error message to console
+    errorBtns[1].addEventListener('click', e => {
+      console.error("print this error message");
+    })
+
+    // console count button - print number of times count invoked
+    errorBtns[2].addEventListener('click', e => {
+      console.count();
+    })
+
+    // console warn button - prints warning message to console
+    errorBtns[3].addEventListener('click', e => {
+      console.warn("print this warning message");
+    })
+
+    // console assert button - print error message to the console when expression evaluates to false.
+    errorBtns[4].addEventListener('click', e => {
+      const x = 5;
+      const y = 3;
+      const reason = 'x is expected to be less than y';
+      console.assert(x < y, {x, y, reason});
+    })
+    
+    // console clear button - clear console
+    errorBtns[5].addEventListener('click', e => {
+      console.clear();
+    })
+
+    // console dir button - print JSON representation of object to console
+    errorBtns[6].addEventListener('click', e => {
+      console.dir(document.head);
+    })
+
+    // console dirxml button - print xml representation of node descendants to console
+    errorBtns[7].addEventListener('click', e => {
+      console.dirxml(document);
+    })
+
+    // console group start button - group messages together in console until group end called
+    errorBtns[8].addEventListener('click', e => {
+      console.group("group starting now");
+    })
+
+    // console group end button - stop visually grouping messages in console
+    errorBtns[9].addEventListener('click', e => {
+      console.groupEnd("group ending now");
+    })
   </script>
 </body>
 
