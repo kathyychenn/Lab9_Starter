@@ -88,6 +88,25 @@
   </main>
 
   <script>
+    // custom error class for error calculator
+    class CalculatorError extends Error {
+      constructor(message) {
+        super(message); 
+        this.name = "CalculatorError"; 
+      }
+    }
+
+    function calculate(number1, number2, operator) {
+      if(isNaN(number1)){
+        throw new CalculatorError("First num: not a valid number");
+      }
+      if(isNaN(number2)){
+        throw new CalculatorError("Second num: not a valid number");
+      }
+
+      return eval(`${number1} ${operator} ${number2}`);
+    }
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -95,7 +114,20 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+
+      let start = Date.now();
+      
+      try {
+        output.innerHTML = calculate(firstNum, secondNum, operator);
+      } catch(err) {
+        if(err instanceof CalculatorError){
+          console.error('Invalid data: ' + err.message);
+        }
+        else throw err;
+      } finally {
+        console.log( `execution took ${Date.now() - start}ms` );
+      }
+      //output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -195,7 +227,10 @@
       first();
     })
 
-    // global error button - 
+    // global error button
+    errorBtns[14].addEventListener('click', e=> {
+      console.log("a global error has occured!!!");
+    })
   </script>
 </body>
 
